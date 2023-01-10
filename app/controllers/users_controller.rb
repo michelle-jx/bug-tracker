@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :admin_authorize
-  validates :username, uniqueness: true
+  # skip_before_action :admin_authorize
 
   def show
     user = User.find_by(id: session[:user_id])

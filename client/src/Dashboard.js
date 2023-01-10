@@ -1,8 +1,9 @@
-import React from 'react'
+import { useState } from 'react'
 
-const Dashboard = () => {
+const Dashboard = ({user}) => {
+
   return (
-    <div><h1>Dashboard</h1></div>
+    <div><h1>{user.username}'s Dashboard</h1></div>
   )
 }
 
