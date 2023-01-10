@@ -1,14 +1,12 @@
 class SessionsController < ApplicationController
-  # post "/login", to: "sessions#create"
+  # post "/", to: "sessions#create"
   #  delete "/logout", to: "sessions#destroy"
-  skip_before_action :authorize, only: :create
-  skip_before_action :admin_authorize, only: %i[create destroy]
 
   def create
     user = User.find_by(username: params[:username])
     if user&.authenticate params[:password]
       session[:user_id] = user.id
-      session[:admin] = user.admin
+      # session[:admin] = user.admin
       render json: user, status: 201
     else
       render json: { errors: ['Invalid username or password'] }, status: :unauthorized

@@ -3,10 +3,11 @@ class CreateTickets < ActiveRecord::Migration[6.1]
     create_table :tickets do |t|
       t.string :status
       t.string :priority
-      t.string :type
+      t.string :issue
       t.string :author
-      t.string :assigned_to
-      t.string :eta
+      t.integer :eta
+      t.integer :user_id
+      t.integer :project_id
 
       t.timestamps
     end

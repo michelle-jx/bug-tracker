@@ -3,6 +3,7 @@ import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Auth from "./Auth"
 import Forgot from "./Forgot"
+import Dashboard from "./Dashboard"
 import { useState, useEffect } from "react"
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/auth" element={<Auth setUser={setUser}/>} />
         <Route path="/forgot" element={<Forgot />} />
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
     </BrowserRouter>
   )
