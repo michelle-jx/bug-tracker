@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post '/auth', to: 'sessions#create'
   delete '/auth', to: 'sessions#destroy'
   get '/me', to: 'users#show'
+  get '/tickets', to: 'tickets#index'
+  get '/projects', to: 'projects#index'
+  get '/projects/:id', to: 'projects#show'
 
   get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end

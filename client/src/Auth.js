@@ -4,12 +4,17 @@ import { Link, useNavigate } from "react-router-dom"
 
 function Auth ({ onLogin }) {
   let [authMode, setAuthMode] = useState("signin")
+  const [name, setName] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   let navigate = useNavigate()
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
+  }
+
+  function handleChangeName(e) {
+    setName(e.target.value)
   }
 
   function handleChangeUsername(e) {
@@ -41,6 +46,24 @@ function Auth ({ onLogin }) {
         } //create ELSE statement for ig login doesn't exist?? probably need a validation for this
       })
   }
+
+  function handleCreateUser(e) {
+    e.preventDefault()
+
+    const newUserObj = {
+      name: name,
+      username: username,
+      password: password
+    }
+
+    const configObj = {
+      method: "POST",
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify(newUserObj)
+    }
+    handleLogin(e)
+  }
+
 
   if (authMode === "signin") {
     return (
@@ -76,7 +99,7 @@ function Auth ({ onLogin }) {
             </div>
             <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-primary">
-                Submit
+                Sign In
               </button>
             </div>
             <p className="text-center mt-2">
@@ -90,7 +113,7 @@ function Auth ({ onLogin }) {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form">
+      <form className="Auth-form" onSubmit={handleCreateUser}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
@@ -99,16 +122,16 @@ function Auth ({ onLogin }) {
               Sign In
             </span>
           </div>
-        {/*   <div className="form-group mt-3">
+          <div className="form-group mt-3">
             <label>Full Name</label>
             <input
               type="name"
               value={name}
-              onChange={handleSetName}
+              onChange={handleChangeName}
               className="form-control mt-1"
               placeholder="Full Name"
             />
-          </div> */}
+          </div>
           <div className="form-group mt-3">
             <label>Username</label>
             <input
@@ -131,7 +154,7 @@ function Auth ({ onLogin }) {
           </div>
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary">
-              Submit
+              Sign Up
             </button>
           </div>
         </div>
