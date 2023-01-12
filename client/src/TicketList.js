@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import Ticket from './Ticket'
+import { Link } from 'react-router-dom'
 
-const TicketList = () => {
+
+const TicketList = ({user}) => {
     const [tickets, setTickets] = useState([])
-    // const [projects, setProjects] = useState([])
+
+//i feel like i should show/hide the add ticket page?? 
 
     useEffect(() => {
         fetch("/tickets")
             .then(resp => resp.json())
-            .then(data => setTickets(data))
+            .then(data => {
+                setTickets(data)
+                // console.log(tickets)
+            })
     }, [])
 
-    // useEffect(() => {
-    //     fetch("/projects")
-    //         .then(resp => resp.json())
-    //         .then(data => setProjects(data))
-    // }, [])
-
-    //later, need to filter out unresolved tickets
-    const ticketArray = tickets.map((ticket) => {
-        return (<Ticket ticket={ticket} />)
+    const allTickets = tickets.map((ticket) => {
+        return (<Ticket ticket={ticket} user={user}/>)
     })
+    //later, need to filter out unresolved tickets
+    
+    //sort by ID will group by dev, i think?
+    const sortTickets = allTickets.sort()
 
     return (
-        <div>
+        <div className='ticket-list'>
             <h2>ALL TICKETS</h2>
-            {ticketArray}
+            <div className="main">
+            {sortTickets}
+            </div>
+            {/* {user.admin ? allTickets : myTickets} */}
         </div>
     )
 }
