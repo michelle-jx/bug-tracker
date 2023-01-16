@@ -75,8 +75,19 @@ label {
   color: rgb(34, 34, 34);
 }
 
+.main {
+  display: flex;
+  align-content: flex-start;
+}
+
 .add-ticket {
   position: absolute;
   top: 5vh;
   right: 3vw;
+}
+
+.table-row {
+  justify-content: space-around;
+  display: flex;
+  align-content: flex-start;
 }

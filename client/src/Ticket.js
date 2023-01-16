@@ -1,20 +1,26 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import ReadOnlyRow from './ReadOnlyRow';
+import EditableRow from './EditableRow';
 
-const Ticket = ({ ticket, user }) => {
+const Ticket = ({ ticket, rowView, setRowView, toggleView }) => {
+
+
+ 
     // console.log(ticket.user.name)
+    
+  /*   function handleDeleteTicket(e) {
+        fetch("/dashboard", {
+            method: "DELETE"
+        })
+        .then(r => r.json())
+        .then(onDeleteTicket)
+    } */
 
     //how to grab id when they click ticket.project.title?
     return (
         <div class='ticket-list'>
-            Project: <Link to='/projects/${:id}`'>{ticket.project.title}</Link>
-            <p>Assigned to: {ticket.user.name} &nbsp;
-                Status: {ticket.status} &nbsp;
-                Priority: {ticket.priority}&nbsp;
-                Issue type: {ticket.issue} &nbsp;
-                Author: {ticket.author} &nbsp;
-                ETA to completion: {ticket.eta}
-            </p>
-            <button>Edit</button>
+         {rowView? <ReadOnlyRow ticket={ticket}/> : <EditableRow ticket={ticket} setRowView={setRowView}/>}
         </div>
     )
 }

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    project = Project.find_by(title: params[:title])
+    project = Project.find_by(id: session[:project_id])
     render json: project, status: :ok
   end
 end

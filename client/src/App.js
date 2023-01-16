@@ -1,13 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-import { BrowserRouter, Routes, Route, Navigate, redirect } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Login from "./Login"
 import Signup from "./Signup"
 import Forgot from "./Forgot"
 import Dashboard from "./Dashboard"
 import TicketList from "./TicketList"
 // import { Context } from "./contexts/Context"
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
+import ProjectItem from './ProjectItem'
 
 function App() {
   const [user, setUser] = useState({})
@@ -43,6 +44,7 @@ function App() {
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} /> 
         <Route path="/tickets" element={<TicketList />}/>
+        <Route path="/projects/${id}" element={<ProjectItem />}/>
       </Routes>
     </BrowserRouter>
   )
