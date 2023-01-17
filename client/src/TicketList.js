@@ -3,9 +3,9 @@ import Ticket from './Ticket'
 import Table from 'react-bootstrap/Table';
 
 const TicketList = ({ user }) => {
-    const [rowView, setRowView] = useState(true)
     //ReadOnly = true, Editable = false
     const [tickets, setTickets] = useState([])
+    const [sort, setSort] = useState("")
     const [addFormData, setAddFormData] = useState({
         title: "",
         priority: "",
@@ -23,15 +23,15 @@ const TicketList = ({ user }) => {
     console.log(user)
 
     const allTickets = tickets.map((ticket) => {
-        return (<Ticket ticket={ticket} rowView={rowView} setRowView={setRowView} toggleView={toggleView} />)})
+        return (<Ticket ticket={ticket} handleEditField={handleEditField}/>)})
     
     const t = tickets.filter((ticket) => ticket.user.name === user.name)
     const myTickets = t.map((ticket) => {
-        return (<Ticket ticket={ticket} rowView={rowView} setRowView={setRowView} toggleView={toggleView} />)
+        return (<Ticket ticket={ticket} handleEditField={handleEditField}/>)
     })
 
 
-    /*  function sortTickets(a, b) {
+    function sortTickets(a, b, ticket) {
          const nameA = ticket.name.toLowerCase();
          const nameB = ticket.name.toLowerCase();
     
@@ -40,10 +40,15 @@ const TicketList = ({ user }) => {
          } else if (nameB > nameA) {
              return 1
          } else return 0
-     } */
+     }
 
-    function toggleView() {
-        setRowView(false)
+    // function toggleView() {
+    //     console.log("toggling")
+    //     setRowView(false)
+    // }
+
+    function handleEditField() {
+        console.log("editing field")
     }
 
     /*   function onDeleteTicket(id) {
@@ -114,7 +119,7 @@ const TicketList = ({ user }) => {
                 <button type="submit">Submit</button>
             </form>
             <form>
-                <button onClick={toggleView}>Edit</button>
+                {/* <button onClick={toggleView}>Edit</button> */}
                 <Table className="main" class="table-light">
                     <tbody>
                         <thead>
@@ -127,7 +132,6 @@ const TicketList = ({ user }) => {
                             <th scope="col">ETA</th>
                         </thead>
                         {user.admin ? allTickets : myTickets}
-                        {/* {myTickets()} */}
                     </tbody>
                 </Table>
             </form>

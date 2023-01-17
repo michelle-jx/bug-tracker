@@ -1,9 +1,6 @@
 import React from 'react'
 
 function EditableRow({ticket, setRowView}) {
-    function handleEditTicket() {
-
-    }
 
     return (
         <tr>
@@ -31,8 +28,7 @@ function EditableRow({ticket, setRowView}) {
             <td>
                 <input type="text"
                     name="issue"
-                    placeholder='issue'
-                    onChange={handleEditTicket}></input>
+                    placeholder='issue'></input>
             </td>
             <td>
                 <input type="text"

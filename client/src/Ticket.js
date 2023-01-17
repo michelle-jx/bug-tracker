@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ReadOnlyRow from './ReadOnlyRow';
 import EditableRow from './EditableRow';
 
-const Ticket = ({ ticket, rowView, setRowView, toggleView }) => {
+const Ticket = ({ ticket, toggleView, handleEditField }) => {
 
 
  
@@ -20,7 +20,7 @@ const Ticket = ({ ticket, rowView, setRowView, toggleView }) => {
     //how to grab id when they click ticket.project.title?
     return (
         <div class='ticket-list'>
-         {rowView? <ReadOnlyRow ticket={ticket}/> : <EditableRow ticket={ticket} setRowView={setRowView}/>}
+            <ReadOnlyRow ticket={ticket} handleEditField={handleEditField}/>
         </div>
     )
 }
