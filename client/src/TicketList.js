@@ -27,7 +27,7 @@ const TicketList = ({ user }) => {
     
     const t = tickets.filter((ticket) => ticket.user.name === user.name)
     const myTickets = t.map((ticket) => {
-        return (<Ticket ticket={ticket} handleEditField={handleEditField}/>)
+        return (<Ticket ticket={ticket} handleEditField={handleEditField} tickets={tickets} setTickets={setTickets}/>)
     })
 
 
@@ -42,63 +42,47 @@ const TicketList = ({ user }) => {
          } else return 0
      }
 
-    // function toggleView() {
-    //     console.log("toggling")
-    //     setRowView(false)
-    // }
-
     function handleEditField() {
         console.log("editing field")
     }
 
-    /*   function onDeleteTicket(id) {
-          const updatedTickets = allTickets.filter((ticket) => ticket.id !== id)
-          console.log(tickets)
-          setTickets(updatedTickets)
-          updatedTickets.map((ticket) => {
-              return (<Ticket ticket={ticket} onDeleteTicket={onDeleteTicket} />)
-          })
-      } */
-    //later, need to filter out unresolved tickets
-
-    //sort by ID will group by dev, i think?
-
+    
     function handleAddTicket(e) {
         e.preventDefault();
         const fieldName = e.target.getAttribute('name')
         const fieldValue = e.target.value;
-
+        
         const newFormData = { ...addFormData }
         newFormData[fieldName] = fieldValue
-
+        
         setAddFormData(newFormData)
     }
 
     function handleAddFormSubmit(e) {
         e.preventDefault();
-
+        
         const newTicket = {
             title: addFormData.title,
             priority: addFormData.priority,
             issue: addFormData.issue
         }
         const newTickets = [...tickets, newTicket]
-
+        
         const configObj = {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newTicket)
         }
         fetch("/dashboard", configObj)
-            .then(r => {
+        .then(r => {
                 if (r.ok) {
                     r.json().then((newTickets) => setTickets(newTickets))
                 }
             })
-    }
-
-    return (
-        <div className='ticket-list'>
+        }
+        
+        return (
+            <div className='ticket-list'>
             <h2>ALL TICKETS</h2>
             <form onSubmit={handleAddFormSubmit}>
                 <input type="text"
@@ -144,14 +128,26 @@ export default TicketList
 //the project dropdown is gonna need OOP perhaps?? or leave all inputs as strings so they can add new types?
 {/* <label for="issue">Issue type</label>
                 <select name='issue-types'>
-                    <option value="bug">Bug</option>
-                    <option value="request">Request</option>
-                    <option value="task">Task</option>
+                <option value="bug">Bug</option>
+                <option value="request">Request</option>
+                <option value="task">Task</option>
                 </select>
                 <label for="issue">Priority Level</label>
                 <select name='priority level'>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
                 </select>
-                <button>Submit</button> */}
+            <button>Submit</button> */}
+
+            /*   function onDeleteTicket(id) {
+                  const updatedTickets = allTickets.filter((ticket) => ticket.id !== id)
+                  console.log(tickets)
+                  setTickets(updatedTickets)
+                  updatedTickets.map((ticket) => {
+                      return (<Ticket ticket={ticket} onDeleteTicket={onDeleteTicket} />)
+                  })
+              } */
+            //later, need to filter out unresolved tickets
+            
+            //sort by ID will group by dev, i think?

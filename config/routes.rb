@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   get '/tickets', to: 'tickets#index'
   post '/dashboard', to: 'tickets#create'
+  patch '/dashboard', to: 'tickets#update'
   get '/projects/:id', to: 'tickets#show'
   # destroy '/dashboard', to: 'tickets#destroy'
   get '/projects', to: 'projects#index'
