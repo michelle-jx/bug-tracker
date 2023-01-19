@@ -21,14 +21,9 @@ class TicketsController < ApplicationController
     render json: no_content
   end
 
-  def destroy
+  def update
     ticket = Ticket.find_by(id: params[:id])
-    ticket.update
+    ticket.update_all
+    render json: ticket, status: :ok
   end
-
-  # private
-
-  # def ticket_params
-  # params.permit(:status, :priority, :issue)
-  # end
 end

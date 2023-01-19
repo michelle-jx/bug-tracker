@@ -19,8 +19,8 @@ const TicketList = ({ user }) => {
                 setTickets(data)
             })
     }, [])
-    console.log(tickets)
-    console.log(user)
+    // console.log(tickets)
+    // console.log(user)
 
     const allTickets = tickets.map((ticket) => {
         return (<Ticket ticket={ticket} handleEditField={handleEditField}/>)})
