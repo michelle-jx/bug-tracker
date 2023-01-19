@@ -1,9 +1,18 @@
-import { useState } from 'react'
+import Navbar from './Navbar'
+import TicketList from './TicketList'
+import BarChart from './BarChart'
+import {Link} from "react-router-dom"
 
-const Dashboard = ({user}) => {
+const Dashboard = ({ user, handleLogout }) => {
 
   return (
-    <div><h1>{user.username}'s Dashboard</h1></div>
+    <div>
+      <h1>Hi {user.username}, here are your tickets.</h1>
+      <TicketList user={user}/>
+      <BarChart user={user}/>
+      <Link to="/login"><button type="button" class="btn btn-danger" onClick={handleLogout}>Log Out</button></Link>
+      <Navbar />
+    </div>
   )
 }
 
