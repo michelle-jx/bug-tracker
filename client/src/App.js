@@ -36,6 +36,7 @@ function App() {
   }
 
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Navigate replace to="/login" />} />
@@ -44,9 +45,10 @@ function App() {
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} /> 
         <Route path="/tickets" element={<TicketList />}/>
-        <Route path="/projects/${id}" element={<ProjectItem />}/>
+        <Route path="/projects/${ticket.project.id}" element={<ProjectItem />}/>
       </Routes>
     </BrowserRouter>
+
   )
 }
 

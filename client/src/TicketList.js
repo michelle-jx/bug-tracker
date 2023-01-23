@@ -84,23 +84,26 @@ const TicketList = ({ user }) => {
         return (
             <div className='ticket-list'>
             <h2>ALL TICKETS</h2>
-            <form onSubmit={handleAddFormSubmit}>
+            <h4 className='add-form-headers'>Project Name &nbsp; Priority &nbsp; Issue Type </h4>            <form onSubmit={handleAddFormSubmit}>
                 <input type="text"
                     name="title"
                     required="required"
                     placeholder='project name'
                     onChange={handleAddTicket}></input>
+                    &nbsp;&nbsp;
                 <input type="text"
                     name="priority"
                     required="required"
                     placeholder='priority'
                     onChange={handleAddTicket}></input>
+                    &nbsp;&nbsp;
                 <input type="text"
                     name="issue"
                     required="required"
                     placeholder='issue'
                     onChange={handleAddTicket}></input>
-                <button type="submit">Submit</button>
+                    &nbsp; &nbsp;
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
             </form>
             <form>
                 {/* <button onClick={toggleView}>Edit</button> */}

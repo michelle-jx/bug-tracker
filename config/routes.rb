@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   get '/tickets', to: 'tickets#index'
   post '/dashboard', to: 'tickets#create'
   patch '/dashboard', to: 'tickets#update'
-  get '/projects/:id', to: 'tickets#show'
   # destroy '/dashboard', to: 'tickets#destroy'
   get '/projects', to: 'projects#index'
+  get '/projects/:id', to: 'tickets#show'
 
   get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end
