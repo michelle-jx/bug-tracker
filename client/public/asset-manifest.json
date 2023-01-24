@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7dc6f951.css",
+    "main.js": "/static/js/main.a03411d3.js",
+    "static/js/787.c229d825.chunk.js": "/static/js/787.c229d825.chunk.js",
+    "static/media/clement-helardot-95YRwf6CNw8-unsplash.jpg": "/static/media/clement-helardot-95YRwf6CNw8-unsplash.b6c3931702238e97de51.jpg",
+    "static/media/404.avif": "/static/media/404.cbae11c653d5f3e4eb5a.avif",
+    "index.html": "/index.html",
+    "main.7dc6f951.css.map": "/static/css/main.7dc6f951.css.map",
+    "main.a03411d3.js.map": "/static/js/main.a03411d3.js.map",
+    "787.c229d825.chunk.js.map": "/static/js/787.c229d825.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7dc6f951.css",
+    "static/js/main.a03411d3.js"
+  ]
+}
