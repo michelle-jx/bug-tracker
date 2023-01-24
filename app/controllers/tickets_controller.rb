@@ -10,10 +10,10 @@ class TicketsController < ApplicationController
     render json: project, status: :created, include: :ticket
   end
 
-  def show
-    ticket = Ticket.find_by(id: params[:id])
-    render json: ticket, status: :ok
-  end
+  # def show
+  #   ticket = Ticket.find_by(id: params[:id])
+  #   render json: ticket, status: :ok
+  # end
 
   def destroy
     ticket = Ticket.find_by(id: params[:id])

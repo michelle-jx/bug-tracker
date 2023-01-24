@@ -63,6 +63,12 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
     window.location.reload()
   }
 
+  const steps = ticket.solutions.map((s) => {
+    return (<td class="table-light">{s.action_steps}</td>)
+  })
+
+  console.log(ticket.solutions)
+
   if (!rowView) {
     return (
       <div>
@@ -72,7 +78,7 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
           Status:<input placeholder={ticket.status} name="status" onChange={handleEditTicket} defaultValue={editFormData.status} /><br />
           Priority Level:<input placeholder={ticket.priority} name="priority" onChange={handleEditTicket} defaultValue={editFormData.priority} /><br />
           Issue Type:<input placeholder={ticket.issue} name="issue" onChange={handleEditTicket} defaultValue={editFormData.issue} /><br />
-         {/*  <select name='issue' onChange={handleEditTicket} value={editFormData.issue}>
+          {/*  <select name='issue' onChange={handleEditTicket} value={editFormData.issue}>
             <option value="bug">Bug</option>
             <option value="request">Request</option>
             <option value="task">Task</option>
@@ -97,6 +103,7 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
         <td class="table-light">{ticket.issue ? ticket.issue : "TBD"}</td>
         <td class="table-light">{ticket.author ? ticket.author : "TBD"}</td>
         <td class="table-light">{ticket.eta ? ticket.eta : "TBD"}</td>
+        <td class="table-light">{steps}</td>
       </tr>
     )
   }

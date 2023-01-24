@@ -82,9 +82,11 @@ const TicketList = ({ user }) => {
         }
         
         return (
+            <div className='mainContent'>
             <div className='ticket-list'>
-            <h2>ALL TICKETS</h2>
-            <h4 className='add-form-headers'>Project Name &nbsp; Priority &nbsp; Issue Type </h4>            <form onSubmit={handleAddFormSubmit}>
+                 {user.admin?<h2>Admin Mode: All Tickets</h2>  :<h1>Hi {user.username}, here are your tickets.</h1>}
+            <h4 className='add-form-headers'>Project Name &nbsp; Priority &nbsp; Issue Type </h4>            
+            <form onSubmit={handleAddFormSubmit}>
                 <input type="text"
                     name="title"
                     required="required"
@@ -117,11 +119,13 @@ const TicketList = ({ user }) => {
                             <th scope="col">Issue type</th>
                             <th scope="col">Ticket author</th>
                             <th scope="col">ETA</th>
+                            <th scope="col">Possible solutions</th>
                         </thead>
                         {user.admin ? allTickets : myTickets}
                     </tbody>
                 </Table>
             </form>
+        </div>
         </div>
     )
 }

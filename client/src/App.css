@@ -4,35 +4,56 @@
   padding: 0;
   box-sizing: border-box;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
-  transition: .3 ease;
+  font-family: 'Montserrat', sans-serif;
+  transition: .3s ease;
 }
 
-/* COLORS */
+/* Colors and Styles (Default) */
+:root {
+  --PrimaryColor: hsl(94, 59%, 35%);
+  --HoverColor: #bdf094;
+  --paleGreen: hsl(96, 75%, 89%);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --textColor: hsl(240, 1%, 48%);
+  --bgColor: hsl(220, 10%, 94%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: hsl(330, 12%, 97%);
 
-/* DEFAULT STYLES */
+  /* Font ang Typography */
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+/* Default styles */
 html {
   font-size: 90%;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-li{
+li {
   list-style: none;
 }
 
 .icon {
-  font-size: var(--h2FontSize)
+  font-size: var(--h2FontSize);
+  cursor: pointer;
 }
 
-img{
+img {
   width: 100%;
   height: auto;
 }
 
-.flex{
+.flex {
   display: flex;
   align-items: center;
 }
@@ -40,11 +61,12 @@ img{
 .grid {
   display: grid;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .btn {
   border: none;
-  outline: None;
+  outline: none;
   cursor: pointer;
   border-radius: 8px;
   box-shadow: 0 2px 4px var(--inputColor);
@@ -56,7 +78,7 @@ img{
   margin-left: .5rem;
 }
 
-.btn:hover{
+.btn:hover {
   background: var(--paleGreen);
   color: var(--PrimaryColor);
 }
@@ -71,15 +93,55 @@ body {
 
 .container {
   position: relative;
-  width: 95vw;
-  height: 95vh;
+  width: 98vw;
+  height: 98vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: var(--bgColor);
-  overflow: hidden;
+  overflow:scroll;
   border-radius: 1rem;
-  box-shadow: 2px 2px 8px grey;
+  box-shadow: 2px 2px 8px var(--greyText);
 }
+
+/* Hide the scroll thumb */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::selection {
+  background: var(--PrimaryColor);
+  color: var(--whiteColor);
+}
+
+/* // MEDIA QUERIES ==================> */
+@media screen and (max-width: 990px) {
+  .heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 918px) {
+  .heading {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/*THIS IS FROM LOGIN FORM I THINK?*/
 
 .App {
   text-align: center;
@@ -109,13 +171,14 @@ body {
 }
 
 .App-link {
-  color: #61dafb;
+  color: green;
 }
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -127,7 +190,7 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(105, 130, 199);
+  background-color: #dbf2c7;
 }
 
 .Auth-form {
@@ -148,14 +211,14 @@ body {
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
-  color: rgb(34, 34, 34);
+  color: darkgreen;
   font-weight: 800;
 }
 
 label {
   font-size: 14px;
   font-weight: 600;
-  color: rgb(34, 34, 34);
+  color: darkgreen;
 }
 
 .main {
@@ -176,10 +239,26 @@ label {
 }
 
 .edit-ticket-form {
-  display:grid;
+  display: grid;
 }
- 
+
 .add-form-headers {
   justify-content: space-between;
   display: block;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: whitesmoke !important;
+  outline-color: black;
+}
+
+.project-list {
+  display: block;
+  position: absolute;
+  top: 5vh;
+  /* left: 30vw; */
+  align-content: center;
 }

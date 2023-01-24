@@ -17,6 +17,7 @@ function Login({ onLogin }) {
 
   function handleLogin(e) {
     e.preventDefault();
+    console.log('logging in')
 
     const userObj = {
       username: username,
@@ -70,9 +71,7 @@ function Login({ onLogin }) {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
-              Sign In
-            </button>
+          <button type="submit" class="btn btn-outline-success">Sign In</button>
           </div>
           <p className="text-center mt-2">
             Forgot <Link to="/forgot">password?</Link>
