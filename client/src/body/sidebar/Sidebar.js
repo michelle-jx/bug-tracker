@@ -2,11 +2,13 @@ import React from 'react'
 import './sidebar.css'
 import img from '../../img/clement-helardot-95YRwf6CNw8-unsplash.jpg'
 import { IoMdSpeedometer } from 'react-icons/io'
-// import { AiOutlineBug } from 'react-icons/ai'
+import { AiOutlineUser } from 'react-icons/ai'
 import { BsQuestionCircle, BsCardChecklist } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
-const Sidebar = ({handleLogout}) => {
+const Sidebar = ({handleLogout, user}) => {
+  console.log(user)
+
   return (
     <div className='sideBar grid'>
       <div className='logoDiv flex'>
@@ -30,11 +32,17 @@ const Sidebar = ({handleLogout}) => {
 
           <li className='listItem'>
             <a href='#' className='menuLink flex'>
-              {/* <AiOutlineBug className='icon' /> */}
               <BsCardChecklist className='icon'/>
               <Link to="/projects"><span className='smallText'>All Projects</span></Link>
             </a>
           </li>
+
+          {user.admin? <li className='listItem'>
+            <a href='#' className='menuLink flex'>
+              <AiOutlineUser className='icon'/>
+              <Link to="/users"><span className='smallText'>Manage Users</span></Link>
+            </a>
+          </li> : null}
 
         </ul>
       </div>

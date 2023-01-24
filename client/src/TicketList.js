@@ -119,7 +119,7 @@ const TicketList = ({ user }) => {
                             <th scope="col">Issue type</th>
                             <th scope="col">Ticket author</th>
                             <th scope="col">ETA</th>
-                            <th scope="col">Possible solutions</th>
+                            {/* <th scope="col">Possible solutions</th> */}
                         </thead>
                         {user.admin ? allTickets : myTickets}
                     </tbody>

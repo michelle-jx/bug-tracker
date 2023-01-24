@@ -9,7 +9,7 @@ const Dashboard = ({ user, handleLogout }) => {
 
   return (
     <div className='container'>
-        <Sidebar handleLogout={handleLogout}/>
+      <Sidebar handleLogout={handleLogout} user={user} />
       <TicketList user={user} />
     </div>
   )

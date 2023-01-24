@@ -41,7 +41,6 @@ function ProjectItem({ project }) {
           <div className="singleItem">
             <img src={img} alt="404 on rainbow background with upside down smiley" />
             <p>Current Issues: {project.description ? project.description : "Add a description from Dashboard page"}</p>
-            {/* <AiOutlineBug className="icon" /> */}
           </div>
         </div>
       </div>

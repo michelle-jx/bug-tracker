@@ -3,6 +3,7 @@ import { useState } from "react"
 
 function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
   const [rowView, setRowView] = useState(true)
+  const [solutionsVisible, setSolutionsVisible] = useState(false)
   const [editFormData, setEditFormData] = useState({
     title: ticket.project.title,
     name: ticket.user.name,
@@ -63,6 +64,10 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
     window.location.reload()
   }
 
+  function handleShowSolutions () {
+    setSolutionsVisible(solutionsVisible => !solutionsVisible)
+  }
+
   const steps = ticket.solutions.map((s) => {
     return (<td class="table-light">{s.action_steps}</td>)
   })
@@ -103,7 +108,9 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
         <td class="table-light">{ticket.issue ? ticket.issue : "TBD"}</td>
         <td class="table-light">{ticket.author ? ticket.author : "TBD"}</td>
         <td class="table-light">{ticket.eta ? ticket.eta : "TBD"}</td>
-        <td class="table-light">{steps}</td>
+  {/*       <td class="table-light">{steps}</td> */}
+  {/* <button onClick={handleShowSolutions}>Show Action Steps</button>
+  {solutionsVisible ? {steps} : null} */}
       </tr>
     )
   }
