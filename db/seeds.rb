@@ -13,6 +13,7 @@ Solution.destroy_all
 
 user1 = User.create(name: "Michelle", username: "michelle", password: '1234', admin: true)
 user2 = User.create(name: "Bruce Wayne", username: "batman", password: 'robin', admin: false)
+user3 = User.create(name: "Shaq", username: "shaqoneal", password: "papashaq", admin: true)
 
 proj1 = Project.create(title: 'Bug Tracker', description: 'everything is still broken', contributors: user1.name)
 proj2 = Project.create(title: 'Batmobile', description: 'Engine will not start', contributors: user2.name)
@@ -26,7 +27,7 @@ ticket5 = Ticket.create(status: 'on hold', priority: 'low', issue: 'task', autho
 up1 = UserProject.create(user_id: 1, project_id: 2)
 up1 = UserProject.create(user_id: 2, project_id: 1)
 
-sol1 = Solution.create(action_steps: '', ticket_id: ticket1.id)
-sol2 = Solution.create(action_steps: '', ticket_id: ticket2.id)
+sol1 = Solution.create(action_steps: 'maybe proofread your code??', ticket_id: ticket1.id)
+sol2 = Solution.create(action_steps: 'add jetpacks?', ticket_id: ticket2.id)
 
 puts '🌱 Done seeding! 🌱'

@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react'
 import ProjectItem from './ProjectItem'
+import Sidebar from './body/sidebar/Sidebar'
+import Body from './body/Body'
 
-function ProjectList() {
+function ProjectList({user}) {
     const [projects, setProjects] = useState([])
     useEffect(() => {
         fetch("/projects")
@@ -9,9 +11,16 @@ function ProjectList() {
             .then(data => setProjects(data))
     }, [])
 
-    const projectList = projects.map((project) => <ProjectItem project={project}/>)
+    const projectList = projects.map((project) => <ProjectItem user={user} project={project}/>)
+    console.log(projectList)
     return (
-    <div>{projectList}</div>
+    <div className='container'>
+      <div>
+      {/* <h2>All Projects</h2> */}
+      <Sidebar user={user}/>
+      </div>
+      <div className='project-list'>{projectList}</div>
+      </div>
   )
 }
 

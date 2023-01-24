@@ -8,7 +8,9 @@ import Dashboard from "./Dashboard"
 import TicketList from "./TicketList"
 // import { Context } from "./contexts/Context"
 import { useState, useEffect } from "react"
-import ProjectItem from './ProjectItem'
+import ProjectList from './ProjectList'
+import UserList from "./UserList"
+
 
 function App() {
   const [user, setUser] = useState({})
@@ -36,6 +38,7 @@ function App() {
   }
 
   return (
+    <div>
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Navigate replace to="/login" />} />
@@ -44,9 +47,12 @@ function App() {
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/dashboard" element={<Dashboard user={user} handleLogout={handleLogout}/>} /> 
         <Route path="/tickets" element={<TicketList />}/>
-        <Route path="/projects/${id}" element={<ProjectItem />}/>
+        <Route path="/projects" element={<ProjectList user={user}/>}/>
+        <Route path="/users" element={<UserList user={user}/>}/>
       </Routes>
     </BrowserRouter>
+   
+    </div>
   )
 }
 

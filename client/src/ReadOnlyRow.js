@@ -3,14 +3,16 @@ import { useState } from "react"
 
 function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
   const [rowView, setRowView] = useState(true)
+  const [solutionsVisible, setSolutionsVisible] = useState(false)
   const [editFormData, setEditFormData] = useState({
-    title: "",
-    name: "",
-    status: "",
-    priority: "",
-    issue: "",
-    author: "",
-    eta: ""
+    title: ticket.project.title,
+    name: ticket.user.name,
+    status: ticket.status,
+    priority: ticket.priority,
+    issue: ticket.issue,
+    author: ticket.author,
+    eta: ticket.eta,
+    id: ticket.id
   })
 
   function toggleView(e) {
@@ -30,10 +32,6 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
     setEditFormData(editedFormData)
   }
 
-  function testing() {
-    console.log("hello")
-  }
-
   function handleEditFormSubmit(e) {
     e.preventDefault();
     console.log('submit edit form')
@@ -45,38 +43,57 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
       priority: editFormData.priority,
       issue: editFormData.issue,
       author: editFormData.author,
-      eta: editFormData.eta
+      eta: editFormData.eta,
+      id: editFormData.id
     }
+    console.log(updatedTicket)
 
     fetch("/dashboard", {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedTicket)
     })
-  /*     .then(resp => resp.json()) */
+      /*     .then(resp => resp.json())  */
       .then(resp => {
         if (resp.ok) {
-          resp.json().then(console.log("patching"))
-           //do we need to set tickets again?
+          resp.json().then(setTickets)
+          //do we need to set tickets again?
         }
       })
-      .then(setTickets)
+      .then(console.log("patching"))
+    window.location.reload()
   }
+
+  function handleShowSolutions () {
+    setSolutionsVisible(solutionsVisible => !solutionsVisible)
+  }
+
+  const steps = ticket.solutions.map((s) => {
+    return (<td class="table-light">{s.action_steps}</td>)
+  })
+
+  console.log(ticket.solutions)
 
   if (!rowView) {
     return (
       <div>
-      <form onSubmit={handleEditFormSubmit}>
-        <input placeholder={ticket.project.title} name="title" onChange={handleEditTicket} defaultValue={editFormData.title} />
-        <input placeholder={ticket.user.name} name="name" onChange={handleEditTicket} defaultValue={editFormData.name} />
-        <input placeholder={ticket.status} name="status" onChange={handleEditTicket} defaultValue={editFormData.status} />
-        <input placeholder={ticket.priority} name="priority" onChange={handleEditTicket} defaultValue={editFormData.priority} />
-        <input placeholder={ticket.issue} name="issue" onChange={handleEditTicket} defaultValue={editFormData.issue} />
-        <input placeholder={ticket.author} name="author" onChange={handleEditTicket} defaultValue={editFormData.author} />
-        <input placeholder={ticket.eta} name="eta" onChange={handleEditTicket} defaultValue={editFormData.eta} />
-        <button>Submit</button>
-        <button onClick={toggleView}>Cancel</button>
-      </form>
+        <form className="edit-ticket-form">
+          Project Name:<input placeholder={ticket.project.title} name="title" onChange={handleEditTicket} defaultValue={editFormData.title} /><br />
+          Assigned to:<input placeholder={ticket.user.name} name="name" onChange={handleEditTicket} defaultValue={editFormData.name} /><br />
+          Status:<input placeholder={ticket.status} name="status" onChange={handleEditTicket} defaultValue={editFormData.status} /><br />
+          Priority Level:<input placeholder={ticket.priority} name="priority" onChange={handleEditTicket} defaultValue={editFormData.priority} /><br />
+          Issue Type:<input placeholder={ticket.issue} name="issue" onChange={handleEditTicket} defaultValue={editFormData.issue} /><br />
+          {/*  <select name='issue' onChange={handleEditTicket} value={editFormData.issue}>
+            <option value="bug">Bug</option>
+            <option value="request">Request</option>
+            <option value="task">Task</option>
+          </select> */}
+          Ticket Author:<input placeholder={ticket.author} name="author" onChange={handleEditTicket} defaultValue={editFormData.author} /><br />
+          Completion ETA:<input placeholder={ticket.eta} name="eta" onChange={handleEditTicket} defaultValue={editFormData.eta} /><br />
+          <button type="button" class="btn btn-outline-primary" onClick={handleEditFormSubmit}>Submit</button>
+          <br />
+          <button type="button" class="btn btn-outline-danger" onClick={toggleView}>Cancel</button>
+        </form>
       </div>
     )
 
@@ -84,13 +101,16 @@ function ReadOnlyRow({ ticket, handleEditField, tickets, setTickets }) {
 
     return (
       <tr class="table-light" className="table-row" onClick={toggleView}>
-        <Link to="/projects/${ticket.project.id}" ticket={ticket}><td><b>{ticket.project.title}</b></td></Link>
+        <Link to={`/projects/${ticket.project.id}`}><td><b>{ticket.project.title}</b></td></Link>
         <td class="table-light">{ticket.user.name ? ticket.user.name : "TBD"}</td>
         <td class="table-light">{ticket.status ? ticket.status : "TBD"}</td>
         <td class="table-light">{ticket.priority}</td>
         <td class="table-light">{ticket.issue ? ticket.issue : "TBD"}</td>
         <td class="table-light">{ticket.author ? ticket.author : "TBD"}</td>
         <td class="table-light">{ticket.eta ? ticket.eta : "TBD"}</td>
+  {/*       <td class="table-light">{steps}</td> */}
+  {/* <button onClick={handleShowSolutions}>Show Action Steps</button>
+  {solutionsVisible ? {steps} : null} */}
       </tr>
     )
   }

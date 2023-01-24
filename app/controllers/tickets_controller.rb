@@ -10,10 +10,10 @@ class TicketsController < ApplicationController
     render json: project, status: :created, include: :ticket
   end
 
-  def show
-    ticket = Ticket.find_by(id: params[:id])
-    render json: ticket, status: :ok
-  end
+  # def show
+  #   ticket = Ticket.find_by(id: params[:id])
+  #   render json: ticket, status: :ok
+  # end
 
   def destroy
     ticket = Ticket.find_by(id: params[:id])
@@ -22,8 +22,21 @@ class TicketsController < ApplicationController
   end
 
   def update
-    ticket = Ticket.find_by(id: params[:id])
-    ticket.update_all
+    ticket = Ticket.find_by!(id: params[:id])
+    ticket.project do |t|
+      t.update(project_params)
+    end
+    ticket.update(ticket_params)
     render json: ticket, status: :ok
+  end
+
+  private
+
+  def ticket_params
+    params.permit(:status, :priority, :issue, :author, :user_id, :project_id, :eta)
+  end
+
+  def project_params
+    params.permit(:title, :description, :contributors)
   end
 end
