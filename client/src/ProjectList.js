@@ -16,7 +16,6 @@ function ProjectList({user}) {
     return (
     <div className='container'>
       <div>
-      {/* <h2>All Projects</h2> */}
       <Sidebar user={user}/>
       </div>
       <div className='project-list'>{projectList}</div>
