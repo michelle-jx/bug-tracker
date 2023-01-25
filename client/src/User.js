@@ -10,8 +10,12 @@ const User = ({ user }) => {
     })
 
     function toggleAdmin() {
+        let admin = user.admin
         setAdmin(admin => !admin)
+        console.log(admin)
     }
+
+    
 
     return (
         <div>

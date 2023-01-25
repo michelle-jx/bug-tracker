@@ -79,6 +79,7 @@ const TicketList = ({ user }) => {
                     r.json().then((newTickets) => setTickets(newTickets))
                 }
             })
+            .then(window.location.reload())
         }
         
         return (
