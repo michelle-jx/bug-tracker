@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
-UserProject.destroy_all
 Project.destroy_all
 Ticket.destroy_all
+UserProject.destroy_all
 Solution.destroy_all
 # we're not going to delete projects/tickets, just mark them resolved so don't need dependent destroy
 

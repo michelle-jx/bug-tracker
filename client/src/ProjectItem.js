@@ -24,6 +24,7 @@ function ProjectItem({ project }) {
     }
   }
 
+  console.log(project.solutions)
   function handleClickProject() { }
 
   return (
@@ -34,13 +35,13 @@ function ProjectItem({ project }) {
           <h1>{project.title}</h1>
         </div>
 
-        <li>{project.tickets}</li>
+        <li>{project.solutions.action_steps}</li>
             <p>Devs: {project.contributors ? project.contributors : "None yet! Please contact an admin to be added to this project."}</p>
             <AiOutlineBug className="icon" />
         <div className="secContainer flex">
           <div className="singleItem">
             <img src={img} alt="404 on rainbow background with upside down smiley" />
-            <p>Current Issues: {project.description ? project.description : "Add a description from Dashboard page"}</p>
+            <p>Current Issues: <br />{project.description ? project.description : "Add a description from Dashboard page"}</p>
           </div>
         </div>
       </div>
